@@ -16,11 +16,6 @@ class UserToDoService
 
     private User $user;
 
-    public function __construct(User $user)
-    {
-        $this->user = $user;
-    }
-
     /**
      * @param array $attribute
      * @return ToDoIssue
@@ -28,8 +23,6 @@ class UserToDoService
     private function createToDoService(array $attribute): ToDoIssue
     {
         $issue = new ToDoIssue();
-        /** TODO можна зробити через DTO, щоб знати що за масив сюди заходить */
-
         $issue->fill($attribute);
         $issue->save();
 
@@ -59,8 +52,6 @@ class UserToDoService
      */
     public function update(ToDoIssue $doIssue, $attribute): bool
     {
-        /** TODO можна зробити через DTO */
-
         $doIssue->fill($attribute);
         return $doIssue->save();
     }
@@ -198,8 +189,6 @@ class UserToDoService
                 return false;
             }
         }
-        // тут можна ще зробити перевірку на зміну статусу на туду
-
 
         return $this->update($toDoIssue, ['status' => $status]);
 

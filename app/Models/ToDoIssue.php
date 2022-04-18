@@ -29,11 +29,17 @@ class ToDoIssue extends Model
     protected $table = 'to_do_issues';
     protected array $fillable = ['id', 'parent_id', 'name', 'description','priority', 'status'];
 
+    /**
+     * @return BelongsTo
+     */
     public function parent(): BelongsTo
     {
         return $this->belongsTo(ToDoIssue::class);
     }
 
+    /**
+     * @return HasMany
+     */
     public function children(): HasMany
     {
         return $this->hasMany(ToDoIssue::class, 'parent_id');
